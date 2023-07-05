@@ -2,6 +2,8 @@ pipeline {
     agent any
     environment {
         DOCKERHUB_USERNAME = "prvinsm21"
+        DOCKERHUB_CREDENTIALS = credentials('dockerhub')
+        DOCKERIMAGE_NAME = "prvinsm21/gaming-site:${BUILD_NUMBER}"
     }
 
     stages {
@@ -41,6 +43,16 @@ pipeline {
                 }
             }
         }
-        
+        stage ('Build and Push Docker Image') {
+            steps {
+                script {
+                    sh 'docker build -t ${DOCKERIMAGE_NAME} .'
+                    def dockerImage = docker.image("${DOCKER_IMAGE}")
+                    docker.withRegistry('https://index.docker.io/v1/', "dockerhub") {
+                    dockerImage.push()
+                    }
+                }
+            }
+        }
     }
 }
