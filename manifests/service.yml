@@ -3,7 +3,7 @@ kind: Service
 metadata:
   name: gamingsite-service
 spec:
-  type: LoadBalancer
+  type: NodePort
   selector:
     app: gamingsite-service
   ports:
