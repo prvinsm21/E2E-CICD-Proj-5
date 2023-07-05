@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: gamingsite
+spec:
+  selector:
+    matchLabels:
+      app: gamingsite
+  template:
+    metadata:
+      labels:
+        app: gamingsite
+    spec:
+      containers:
+      - name: gamingsite
+        image: prvinsm21/gaming-site:replaceImageTag
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+        ports:
+        - containerPort: 8080
