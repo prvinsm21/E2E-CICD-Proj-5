@@ -3,6 +3,7 @@ kind: Deployment
 metadata:
   name: gamingsite
 spec:
+  replica: 3
   selector:
     matchLabels:
       app: gamingsite
