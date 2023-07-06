@@ -5,7 +5,7 @@ metadata:
 spec:
   type: NodePort
   selector:
-    app: gamingsite-service
+    app: gamingsite
   ports:
   - name: http
     port: 80
